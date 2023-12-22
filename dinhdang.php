@@ -19,16 +19,22 @@
             width: 300px;
             margin: auto;
         }
+        .kq{
+            color: red;
+            font-weight: 700;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <?php 
         
-        print_r($_POST);
+        //print_r($_POST);
         $noidung = null;
         $mauchu = null;
         $maunen = null;
-        
+        $kq = null;
+
         if(
             isset($_POST['noidung'])
             && isset($_POST['mauchu'])
@@ -38,6 +44,7 @@
             $noidung = $_POST['noidung'];
             $mauchu = $_POST['mauchu'];
             $maunen = $_POST['maunen'];
+            $kq = "Kết quả sau khi nhấn Xem kết quả";
         }
     ?>
     <form action="dinhdang.php" method="post" >
@@ -52,21 +59,21 @@
                 <tr>
                     <td>Nội dung</td>
                     <td>
-                        <input type="text" name="noidung"/>
+                        <input type="text" name="noidung" value="<?php echo $noidung;?>"/>
                     </td>
                 </tr><!-- het dòng 2-->
 
                 <tr>
                     <td>Màu chữ</td>
                     <td>
-                        <input type="text" name="mauchu"/>
+                        <input type="text" name="mauchu" value="<?php echo $mauchu;?>"/>
                     </td>
                 </tr><!-- het dòng 3-->
 
                 <tr>
                     <td>Màu nền</td>
                     <td>
-                        <input type="text" name="maunen"/>
+                        <input type="text" name="maunen" value="<?php echo $maunen;?>"/>
                     </td>
                 </tr><!-- het dòng 3-->
 
@@ -76,7 +83,8 @@
                     </td>
                 </tr>
             </table>
-            <p>
+            <h4 class="kq"><?php echo $kq; ?></h4>
+            <p style="background-color: <?php echo $maunen ?>; color:<?php echo $mauchu;?>;text-align: center;">
                 <?php echo $noidung;?>
             </p>
         </div> <!-- End Wrap-->
