@@ -1,3 +1,23 @@
+<?php 
+        
+        //print_r($_POST);
+        $noidung = null;
+        $mauchu = null;
+        $maunen = null;
+        $kq = null;
+
+        if(
+            isset($_POST['noidung'])
+            && isset($_POST['mauchu'])
+            && isset($_POST['maunen']) ) 
+        {
+
+            $noidung = $_POST['noidung'];
+            $mauchu = $_POST['mauchu'];
+            $maunen = $_POST['maunen'];
+            $kq = "Kết quả sau khi nhấn Xem kết quả";
+        }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,29 +44,15 @@
             font-weight: 700;
             text-align: center;
         }
+        .noidung{
+            background-color: <?php echo $maunen;?>;
+            color: <?php echo $mauchu;?>;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <?php 
-        
-        //print_r($_POST);
-        $noidung = null;
-        $mauchu = null;
-        $maunen = null;
-        $kq = null;
-
-        if(
-            isset($_POST['noidung'])
-            && isset($_POST['mauchu'])
-            && isset($_POST['maunen']) ) 
-        {
-
-            $noidung = $_POST['noidung'];
-            $mauchu = $_POST['mauchu'];
-            $maunen = $_POST['maunen'];
-            $kq = "Kết quả sau khi nhấn Xem kết quả";
-        }
-    ?>
+    
     <form action="dinhdang.php" method="post" >
         <div id="wrap">
             <table>
@@ -84,7 +90,7 @@
                 </tr>
             </table>
             <h4 class="kq"><?php echo $kq; ?></h4>
-            <p style="background-color: <?php echo $maunen ?>; color:<?php echo $mauchu;?>;text-align: center;">
+            <p class="noidung">
                 <?php echo $noidung;?>
             </p>
         </div> <!-- End Wrap-->
