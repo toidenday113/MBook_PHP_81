@@ -57,15 +57,34 @@
                         </tr>
                         </thead>
                         <tbody>
-                            
+							<?php 
+								$con = @mysqli_connect("localhost", "root", "");
+								if(!$con){
+									echo "Không thể kết nối đến csdl";
+									exit;
+								}
+
+								$db = mysqli_select_db($con, "ql_ban_sua");
+								if(!$db){
+									echo "Không có csdl mà bạn đã chọn";
+									exit;
+								}
+								
+								mysqli_set_charset($con, "utf8");
+
+								$sql ="SELECT * FROM  hang_sua";
+								$result = mysqli_query($con, $sql);
+								
+								while($row = mysqli_fetch_object($result)){
+							?>
 								<tr>
-									<td><?php  echo $row[0]; ?></td>
-									<td><?php  echo $row[1]; ?></td>
-									<td><?php  echo $row[2]; ?></td>
-									<td><?php  echo $row[3]; ?></td>
-									<td><?php  echo $row[4]; ?></td>
+									<td><?php echo $row->Ma_hang_sua; ?></td>
+									<td><?php echo $row->Teng_hang_sua; ?></td>
+									<td><?php echo $row->Dia_chi; ?></td>
+									<td><?php echo $row->Dien_thoai; ?></td>
+									<td><?php echo $row->Email; ?></td>
 								</tr>
-						
+						<?php } ?>
                        
                         </tbody>
                     </table>

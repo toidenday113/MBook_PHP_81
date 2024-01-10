@@ -58,16 +58,38 @@
                         </tr>
                         </thead>
                         <tbody>
+							<?php 
+								$ketnoi = @mysqli_connect("localhost", "root", "");
+								if(!$ketnoi){
+									echo "Kết nối không thành công";
+									exit;
+								}
+								$db = mysqli_select_db($ketnoi, "ql_ban_sua");
+								if(!$db){
+									echo "Không có csdl này!";
+									exit;
+								}
+								mysqli_set_charset($ketnoi, "utf8");
+								$sql = "SELECT * FROM khach_hang";
+								$result = mysqli_query($ketnoi, $sql);
+								
+								while($row = mysqli_fetch_object($result))
+								{
+									$phai = "nam.png";
+									if($row->Phai == 1){
+										$phai = "nu.png";
+									}
+							?>
                             
 								<tr>
-									<td><?php  echo $row[0]; ?></td>
-									<td><?php  echo $row[1]; ?></td>
-									<td><img  src="<?php  echo $phai; ?>"/></td>
-									<td><?php  echo $row[3]; ?></td>
-									<td><?php  echo $row[4]; ?></td>
-									<td><?php  echo $row[5]; ?></td>
+									<td><?php echo $row->Ma_khach_hang; ?></td>
+									<td><?php  echo $row->Ten_khach_hang; ?></td>
+									<td><img src="./img/images/<?php echo $phai; ?>" /></td>
+									<td><?php echo $row->Dia_chi; ?></td>
+									<td><?php echo $row->Dien_thoai; ?></td>
+									<td><?php echo $row->Email; ?></td>
 								</tr>
-						
+						<?php }?>
                        
                         </tbody>
                     </table>
